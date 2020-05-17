@@ -67,11 +67,16 @@ function getPowerFunction(exponent) {
  *   getPolynom(8)     => y = 8
  *   getPolynom()      => null
  */
-function getPolynom() {
-  throw new Error('Not implemented');
+function getPolynom(...args) {
+  const len = args.length;
+  function inner(x) {
+    if (len === 3) return args[0] * x ** 2 + args[1] * x + args[2];
+    if (len === 2) return args[0] * x + args[1];
+    if (len === 1) return args[0];
+    return null();
+  }
+  return inner;
 }
-
-
 /**
  * Memoizes passed function and returns function
  * which invoked first time calls the passed function and then always returns cached result.
